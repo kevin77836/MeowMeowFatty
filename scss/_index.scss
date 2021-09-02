@@ -1,0 +1,79 @@
+@keyframes changeright {
+    0% {
+        background: $background-gradient;
+        transform: rotate(0deg) scale(5);
+    }
+    50% {
+        background: $background-gradient;
+        transform: rotate(180deg) scale(5);
+    }
+    100% {
+        background: $background-gradient;
+        transform: rotate(360deg) scale(5);
+    }
+}
+
+@keyframes size {
+    0% {
+        transform: scale(1.1);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+.header {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+.fatty {
+    z-index: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+
+    @include pad{
+        width: 500px;
+    }
+
+    @include mobile {
+        width: 300px;
+    }
+
+    &:hover + .content {
+        transform-origin: center;
+        animation: changeright 3s linear infinite;
+    }
+    
+    & > :first-child {
+        display: block;
+    }
+    & > :last-child {
+        display: none;
+    }
+
+    &:hover {
+        & > :first-child {
+            display: none;
+        }
+        & > :last-child {
+            display: block;
+            animation: size 0.4s linear infinite;
+        }
+    }
+}
+
+.content {
+    position: relative;
+    z-index: -1;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+}
